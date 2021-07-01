@@ -97,7 +97,7 @@ function questionPage() {
 
 
 function nextQuestion(){
-    console.log("tez")
+    console.log("test console")
     console.log(questionPageQuestion)
 
 }
