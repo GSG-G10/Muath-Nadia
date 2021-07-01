@@ -3,14 +3,13 @@ const leaderButton = document.querySelector(".header-leaderboard");
 const headerSection = document.querySelector(".header");
 const body = document.body;
 const bg = document.querySelector(".main-bg");
-let mainSection = document.querySelector("main");
+const mainSection = document.querySelector("main");
+const nextQuestionButton = document.querySelector('.quiz-next-question')
 
 let playerDetails = {
-    name: "111",
+    name: "",
     score: 0,
 }
-
-
 
 const questions = {
     1: {
@@ -64,27 +63,42 @@ const questions = {
         rightAnswer: 2,
     },
 };
-
+// build page name
 function namePage() {
     mainSection.innerHTML =
         '<h1 class="name-title" > My name is :</h1> <input class="name-input" type="text" placeholder="Enter your name here"> <div class="name-btn"><button class="name-btn-back" onClick="window.location.reload();"><a href="#" ></a>Go Back</button><button class="name-btn-start" onClick="start()"> Start Quiz</button></div>';
 };
-
+// remove headerSection and excute a name page
 startButton.addEventListener("click", () => {
     headerSection.parentNode.removeChild(headerSection);
     bg.parentNode.removeChild(bg);
     namePage();
 });
-let quizerName = localStorage.getItem("name");
+
 
 function start() {
-    let name = document.querySelector(".name-input").value;
-    playerDetails.name = name
-    localStorage.setItem("name", name)
+    let nameQuizer = document.querySelector(".name-input").value;
+    if(nameQuizer){
+        localStorage.setItem("name", nameQuizer)
+
+    playerDetails.name = nameQuizer
+
+    console.log(playerDetails.name)
     questionPage()
+    }else{
+        alert("Please enter you'r name")
+    }
 }
-console.log("The name is ", localStorage.getItem("name"))
 
 function questionPage() {
-    mainSection.innerHTML = `<section class="quiz-page"><div class="container" ><div class="quiz-status-bar"><p class="quiz-name">Your Name:<span class="quizer-name">${quizerName}</span> </p><p class="quiz-num">1/10</p></div><section class="quiz-question-box"><div class="quiz-question"><h3>Q1 .  Find the sum of 111 + 222 + 333</h3><button id="q-1" class="quiz-answer">700</button><button id="q-1" class="quiz-answer">666</button><button id="q-1" class="quiz-answer">10</button><button id="q-1" class="quiz-answer">100</button></div></section><button class="quiz-next-question">Next</button></div ></section > `
+    mainSection.innerHTML = `<section class="quiz-page"><div class="container" ><div class="quiz-status-bar"><p class="quiz-name">Hi   <span class="quizer-name">
+    ${playerDetails.name}</span>  Good luck !!</p><p class="quiz-num">1/10</p></div><section class="quiz-question-box"><div class="quiz-question"><h3 class="the-Q">Q1 .  Find the sum of 111 + 222 + 333</h3><button id="q-1" class="quiz-answer">700</button><button id="q-1" class="quiz-answer">666</button><button id="q-1" class="quiz-answer">10</button><button id="q-1" class="quiz-answer">100</button></div></section><button onClick = "nextQuestion()" class="quiz-next-question">Next</button></div ></section > `
 };
+
+
+function nextQuestion(){
+    console.log("tez")
+    console.log(questionPageQuestion)
+
+}
+let questionPageQuestion = document.querySelector('.the-Q');
